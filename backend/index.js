@@ -28,54 +28,23 @@
 
 
 
-
-
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const AuthRouter = require('./Routes/AuthRouter');
-const ProductRouter = require('./Routes/ProductRouter');
-const CoordinateRouter = require('./Routes/CoordinateRouter'); // New route for coordinates
-
-require('dotenv').config();
-require('./Models/db'); // Your existing MongoDB connection
-const PORT = process.env.PORT || 8080;
-
-app.get('/ping', (req, res) => {
-    res.send('PONG');
-});
-
-// Middleware
-app.use(bodyParser.json());
-app.use(cors());
-
-// Routes
-app.use('/auth', AuthRouter);
-app.use('/products', ProductRouter);
-app.use('/api', CoordinateRouter); // Add the route to handle coordinates
-
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`);
-});
-
-
-
-
-// modifying it on 13th nov 2024
+// this works
 
 // const express = require('express');
+// const app = express();
 // const bodyParser = require('body-parser');
 // const cors = require('cors');
-// const AuthRouter = require('../Routes/AuthRouter');
-// const ProductRouter = require('../Routes/ProductRouter');
-// const CoordinateRouter = require('../Routes/CoordinateRouter'); // New route for coordinates
+// const AuthRouter = require('./Routes/AuthRouter');
+// const ProductRouter = require('./Routes/ProductRouter');
+// const CoordinateRouter = require('./Routes/CoordinateRouter'); // New route for coordinates
 
 // require('dotenv').config();
-// require('../Models/db'); // Your existing MongoDB connection
+// require('./Models/db'); // Your existing MongoDB connection
+// const PORT = process.env.PORT || 8080;
 
-// const app = express();
+// app.get('/ping', (req, res) => {
+//     res.send('PONG');
+// });
 
 // // Middleware
 // app.use(bodyParser.json());
@@ -86,12 +55,43 @@ app.listen(PORT, () => {
 // app.use('/products', ProductRouter);
 // app.use('/api', CoordinateRouter); // Add the route to handle coordinates
 
-// // Ping route
-// app.get('/ping', (req, res) => {
-//   res.send('PONG');
+// // Start the server
+// app.listen(PORT, () => {
+//     console.log(`Server is running on ${PORT}`);
 // });
 
-// // Export the app as a serverless function for Vercel
-// module.exports = (req, res) => {
-//   app(req, res);
-// };
+
+
+
+// modifying it on 13th nov 2024
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const AuthRouter = require('./Routes/AuthRouter');
+const ProductRouter = require('./Routes/ProductRouter');
+const CoordinateRouter = require('./Routes/CoordinateRouter'); // New route for coordinates
+
+require('dotenv').config();
+require('./Models/db'); // Your existing MongoDB connection
+
+const app = express();
+
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// Routes
+app.use('/auth', AuthRouter);
+app.use('/products', ProductRouter);
+app.use('/api', CoordinateRouter); // Add the route to handle coordinates
+
+// Ping route
+app.get('/ping', (req, res) => {
+    res.send('PONG');
+});
+
+// For Vercel's serverless environment
+module.exports = (req, res) => {
+  app(req, res);  // Forward the request to the express app
+};
