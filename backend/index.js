@@ -74,20 +74,19 @@ app.listen(PORT, () => {
 // const CoordinateRouter = require('./Routes/CoordinateRouter'); // New route for coordinates
 
 // require('dotenv').config();
-// require('./Models/db'); // MongoDB connection file
-
-// app.get('/ping', (req, res) => {
-//     res.send('PONG');
-// });
+// require('./Models/db'); // Your existing MongoDB connection
 
 // // Middleware
-// app.use(bodyParser.json());
+// app.use(express.json());  // Built-in JSON parser
 // app.use(cors());
 
 // // Routes
+// app.get('/ping', (req, res) => {
+//     res.send('PONG');
+// });
 // app.use('/auth', AuthRouter);
 // app.use('/products', ProductRouter);
 // app.use('/api', CoordinateRouter); // Add the route to handle coordinates
 
-// // Export the app instead of listening on a port
+// // Export the app to work with Vercel's serverless function
 // module.exports = app;
