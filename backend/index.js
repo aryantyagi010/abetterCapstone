@@ -74,6 +74,7 @@ const CoordinateRouter = require('./Routes/CoordinateRouter'); // New route for 
 
 require('dotenv').config();
 require('./Models/db'); // Your existing MongoDB connection
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
