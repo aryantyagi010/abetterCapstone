@@ -46,6 +46,12 @@ app.get('/ping', (req, res) => {
     res.send('PONG');
 });
 
+
+app.use(cors({
+    origin: 'https://abetter-capstone-frontendx-rj08m8d6b.vercel.app'  // Allow only your frontend domain
+}));
+
+
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
