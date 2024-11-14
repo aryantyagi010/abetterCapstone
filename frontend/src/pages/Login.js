@@ -28,7 +28,7 @@ function Login() {
         }
         try {
             // const url = `http://localhost:8080/auth/login`;
-            const url = `https://abetter-capstone-frontend.vercel.app/auth/login`;
+            const url = `https://abetter-capstone-server.vercel.app/auth/login`;
 
             const response = await fetch(url, {
                 method: "POST",
